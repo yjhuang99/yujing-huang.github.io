@@ -63,17 +63,6 @@
     innerHTML: 'Back to Top',
     textColor: '#333'
   })</script>
-  <style>
-    #back-to-top {
-      border: 1px solid #ccc;
-      border-radius: 0;
-      font-size: 15px;
-      width: 100px;
-      text-align: center;
-      line-height: 30px;
-      height: 30px;
-    }
-  </style>
 
   <!-- ── Main Wrapper ───────────────────────────────────────────────────── -->
   <div class="wrapper">
@@ -84,7 +73,7 @@
 
       <h1>Yujing Huang</h1>
 
-      <position style="font-size:1.10rem;">Ph.D. Candidate</position>
+      <position>Ph.D. Candidate</position>
       <br>
 
       <a href="https://www.anderson.ucla.edu/" rel="noopener" target="_blank">
@@ -109,10 +98,10 @@
 
       <br><br>
       <div class="social-icons">
-        <a style="margin: 0 5px 0 0" href="./assets/cv.pdf">
+        <a href="./assets/cv.pdf" title="CV">
           <i class="ai ai-cv" style="font-size:1.3rem;"></i>
         </a>
-        <a style="margin: 0 5px 0 0" href="https://github.com/yjhuang99" target="_blank">
+        <a href="https://github.com/yjhuang99" target="_blank" title="GitHub">
           <i class="fab fa-github"></i>
         </a>
       </div>
@@ -141,81 +130,91 @@
 
       <h2 id="education">Education</h2>
       <ul>
-        <li><strong>Ph.D. in Economics</strong>, 2023 &ndash; , <a href="https://www.anderson.ucla.edu/">UCLA Anderson School of Management</a>, U.S.</li>
-        <li><strong>M.A. in Computational Social Science (Economics)</strong>, 2021 &ndash; 2023, <a href="https://www.uchicago.edu/">University of Chicago</a>, U.S.</li>
-        <li><strong>Bachelor of Economics and Finance</strong> (First Honors), 2017 &ndash; 2021, <a href="https://www.hku.hk/">University of Hong Kong</a>, Hong Kong</li>
+        <li><strong>Ph.D. in Economics</strong>, 2023 &ndash; , <a href="https://www.anderson.ucla.edu/">UCLA Anderson School of Management</a></li>
+        <li><strong>M.A. in Computational Social Science (Economics)</strong>, 2021 &ndash; 2023, <a href="https://www.uchicago.edu/">University of Chicago</a></li>
+        <li><strong>Bachelor of Economics and Finance</strong> (First Honors), 2017 &ndash; 2021, <a href="https://www.hku.hk/">University of Hong Kong</a></li>
       </ul>
 
       <h2 id="whats-new">What's New</h2>
-      <ul>
-        <li><strong>[2026]</strong> Awarded EHA Early Stage Dissertation Grant.</li>
-        <li><strong>[2026]</strong> Awarded CEPR ReCIPE PhD Research Grant (&pound;11,600).</li>
-        <li><strong>[2026]</strong> Awarded UCLA Center for Global Management PhD Global Research Award.</li>
-        <li><strong>[2026]</strong> Selected as NBER Fellow of the Innovation Information Initiative (i3).</li>
-        <li><strong>[2025]</strong> Presented "Religion and Conflict" at AEA/ASSA 2025 (San Francisco) and Mountain West Economic History Conference (Utah).</li>
-        <li><strong>[2025]</strong> Awarded UCLA Price Center for Entrepreneurship and Innovation grant and UCLA Luskin Center for History and Policy grant.</li>
-      </ul>
+      <div class="news-item">
+        <span class="news-date">[2026]</span> Awarded EHA Early Stage Dissertation Grant.
+      </div>
+      <div class="news-item">
+        <span class="news-date">[2026]</span> Awarded CEPR ReCIPE PhD Research Grant (&pound;11,600).
+      </div>
+      <div class="news-item">
+        <span class="news-date">[2026]</span> Awarded UCLA Center for Global Management PhD Global Research Award.
+      </div>
+      <div class="news-item">
+        <span class="news-date">[2026]</span> Selected as NBER Fellow of the Innovation Information Initiative (i3).
+      </div>
+      <div class="news-item">
+        <span class="news-date">[2025]</span> Presented "Religion and Conflict" at AEA/ASSA 2025 (San Francisco) and Mountain West Economic History Conference (Utah).
+      </div>
+      <div class="news-item">
+        <span class="news-date">[2025]</span> Awarded UCLA Price Center for Entrepreneurship and Innovation grant and UCLA Luskin Center for History and Policy grant.
+      </div>
 
+      <!-- ── Research ──────────────────────────────────────────────────── -->
       <h2 id="paper" style="margin: 40px 0px 10px;">Working Papers</h2>
 
-      <ul>
-        <li style="margin-bottom: 5px;">
-          <span style="color:#e74d3c">
-            <strong>Religion and Conflict: Evidence from China, 1860&ndash;1911</strong>
-          </span>
-          (with Chicheng Ma and Felipe Valencia Caicedo).
-          <div style="margin-top: 5px;">
-            <em>Presentations:</em><br>
-            - 2025: AEA/ASSA (San Francisco), Mountain West Economic History Conference (Utah).<br>
-            - 2024: AEA/ASSA (San Antonio), PacDev (Stanford), SIOE (Chicago), WEAI (Seattle), ESOC (Los Angeles).<br>
-            - 2023: ASREC (Harvard), UCLA Anderson GEM PhD Seminar.
-          </div>
-        </li>
-      </ul>
-
-      <h1 id="progress"></h1>
+      <div class="paper-card">
+        <div class="paper-title">Religion and Conflict: Evidence from China, 1860&ndash;1911</div>
+        <div class="paper-authors">with Chicheng Ma and Felipe Valencia Caicedo</div>
+        <div class="paper-detail">
+          <em>Presentations:</em><br>
+          2025: AEA/ASSA (San Francisco), Mountain West Economic History Conference (Utah).<br>
+          2024: AEA/ASSA (San Antonio), PacDev (Stanford), SIOE (Chicago), WEAI (Seattle), ESOC (Los Angeles).<br>
+          2023: ASREC (Harvard), UCLA Anderson GEM PhD Seminar.
+        </div>
+      </div>
 
       <h2 style="margin: 30px 0px 10px;">Works in Progress</h2>
 
-      <ul>
-        <li><strong>What Does Not Kill You Makes You Happier: The Long-term Effects of Recessions on Wellbeing</strong> (w. Paola Giuliano).</li>
-        <li><strong>Building Opportunity: The Long-term Effects of Post-WWII Federal Educational Transfers</strong> (w. Jay Tan).</li>
-        <li><strong>The Return(s) of Superstar Scientists</strong> (w. Michela Giorcelli and Bo Li).</li>
-      </ul>
+      <div class="paper-card">
+        <div class="paper-title">What Does Not Kill You Makes You Happier: The Long-term Effects of Recessions on Wellbeing</div>
+        <div class="paper-authors">with Paola Giuliano</div>
+      </div>
 
+      <div class="paper-card">
+        <div class="paper-title">Building Opportunity: The Long-term Effects of Post-WWII Federal Educational Transfers</div>
+        <div class="paper-authors">with Jay Tan</div>
+      </div>
+
+      <div class="paper-card">
+        <div class="paper-title">The Return(s) of Superstar Scientists</div>
+        <div class="paper-authors">with Michela Giorcelli and Bo Li</div>
+      </div>
+
+      <!-- ── Teaching ──────────────────────────────────────────────────── -->
       <h2 id="teaching" style="margin: 40px 0px 10px;">Teaching</h2>
 
-      <ul>
-        <li>
-          <strong>[Fall 2024, 2025]</strong> Managerial Economics (MBA, MGMTFT 405), UCLA Anderson.<br>
-          Teaching Assistant for Prof. Clemence Tricaud and Paola Giuliano. Median rating: Excellent.
-        </li>
+      <div class="teach-card">
+        <strong>Managerial Economics</strong> (MBA, MGMTFT 405), UCLA Anderson<br>
+        <span style="color: #666;">Teaching Assistant for Prof. Clemence Tricaud and Paola Giuliano</span><br>
+        <span class="teach-rating">Fall 2024, 2025 &middot; Rating: Excellent</span>
+      </div>
 
-        <li>
-          <strong>[Fall 2022]</strong> Money and Banking (Undergraduate, ECON 230), University of Chicago.<br>
-          Teaching Assistant for Prof. Harald Uhlig. Median rating: 5.0/5.0.
-        </li>
-      </ul>
+      <div class="teach-card">
+        <strong>Money and Banking</strong> (Undergraduate, ECON 230), University of Chicago<br>
+        <span style="color: #666;">Teaching Assistant for Prof. Harald Uhlig</span><br>
+        <span class="teach-rating">Fall 2022 &middot; Rating: 5.0 / 5.0</span>
+      </div>
 
-      <h1 id="contact"></h1>
+      <!-- ── Contact ───────────────────────────────────────────────────── -->
+      <h2 id="contact" style="margin: 40px 0px 10px;">Contact</h2>
 
-      <h2 style="margin: 40px 0px 10px;">Contact</h2>
-
-      <p>
-        <strong>Address:</strong> <a href="https://www.google.com/maps/place/UCLA+Anderson+School+of+Management">Entrepreneurs Hall C501, 110 Westwood Plaza, Los Angeles, CA 90095</a>
-        <br>
+      <div class="contact-box">
         <strong>Office:</strong> Entrepreneurs Hall C501, UCLA Anderson School of Management
         <br>
         <strong>Email:</strong> <email>yujingh (at) g.ucla.edu</email>
-        <br>
-        <strong>Phone:</strong> +1 (872) 219-7898
-      </p>
+      </div>
 
       <br><br>
     </section>
 
     <footer>
-      <div style="font: 12px/1.2 Crimson Pro, serif">
+      <div style="font: 12px/1.2 'Source Serif 4', serif">
         <p><small></small></p>
       </div>
       <br><br>
