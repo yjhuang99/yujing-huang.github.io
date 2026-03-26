@@ -1,0 +1,242 @@
+/* ── Fonts ─────────────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+
+/* ── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+
+body {
+  background-color: #fff;
+  padding: 0;
+  font: 16px/1.5 "Crimson Pro", serif;
+  color: #595959;
+  font-weight: 400;
+  margin: 0;
+}
+
+a { color: #39c; text-decoration: none; }
+a:hover { color: #069; }
+
+h1, h2, h3, h4, h5, h6 { color: #002D72; margin: 0 0 20px; }
+h1 { font-weight: 500; font-size: 28px; }
+h2 { font-weight: 500; font-size: 157%; margin: 2px 0 15px; }
+h3, h4, h5, h6 { font-weight: 600; }
+h1, h2, h3 { line-height: 1.1; }
+
+p, ul, ol, table, pre, dl { margin: 0 0 20px; }
+strong { color: #222; font-weight: 500; }
+small { font-size: 11px; }
+img { max-width: 100%; }
+
+email {
+  font-size: 14px;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+autocolor { color: #2774AE; }
+
+/* ── Top Navigation ───────────────────────────────────────────────────────── */
+.topnav {
+  background-color: #002D72;
+  overflow: hidden;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+.topnav #myLinks { display: inline; }
+
+.topnav a.icon { display: none; }
+
+.topnav img {
+  margin-bottom: -16.5pt;
+  margin-top: -12.5pt;
+  margin-left: 30%;
+}
+
+.topnav a.normal {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 9px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.normal:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.right { margin-right: 30%; }
+
+/* ── Wrapper / Layout ─────────────────────────────────────────────────────── */
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+/* ── Sidebar Header ───────────────────────────────────────────────────────── */
+header {
+  width: 232px;
+  float: left;
+  position: fixed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  padding-top: 5.5em;
+  text-align: center;
+}
+
+/* ── Avatar ───────────────────────────────────────────────────────────────── */
+.image.avatar { border-radius: 100%; margin: 0 0 1em 0; width: 15em; display: inline-block; }
+
+.image.avatar img {
+  border-radius: 20%;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 -1px 5px 1px rgba(200, 200, 200, 0.3);
+}
+
+/* ── Social Icons ─────────────────────────────────────────────────────────── */
+.social-icons a {
+  display: inline-block;
+  height: 2.4rem;
+  width: 2.4rem;
+  background-color: transparent;
+  color: #163B57 !important;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 2.5rem;
+  margin-right: 1rem;
+}
+.social-icons a:last-child { margin-right: 0; }
+.social-icons a:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.2);
+}
+
+/* ── Position / Affiliation ───────────────────────────────────────────────── */
+position {
+  font-size: 1.10rem;
+}
+
+/* ── Content Section ──────────────────────────────────────────────────────── */
+section {
+  width: 650px;
+  float: right;
+  padding-top: 1.2em;
+  padding-bottom: 50px;
+}
+
+section ul li { margin-bottom: 5px; }
+
+/* ── Paper Links ──────────────────────────────────────────────────────────── */
+.paper-link { color: #e74d3c; }
+.paper-link:hover { color: #c0392b; }
+
+/* ── Back to Top ──────────────────────────────────────────────────────────── */
+#back-to-top {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 15px;
+  width: 100px;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+footer {
+  width: 232px;
+  float: left;
+  position: fixed;
+  bottom: 30px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-align: center;
+}
+
+footer p { font: 12px/1.2 "Crimson Pro", serif; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media print, screen and (max-width: 960px) {
+  div.wrapper { width: auto; margin: 0; }
+  header, section, footer { float: none; position: static; width: auto; }
+  header { padding-top: 80px; }
+  section { border: 1px solid #e5e5e5; border-width: 1px 0; padding: 20px 20px; margin: 0 0 20px; }
+  .image.avatar img { border-radius: 0%; width: 117px; padding: -20px; }
+
+  .topnav img { margin-left: 3%; }
+  .topnav a.right { margin-right: 3%; }
+  .topnav a.normal { padding: 10px 5px; }
+}
+
+@media print, screen and (max-width: 960px) {
+  body { word-wrap: break-word; padding: 0; }
+
+  .topnav #myLinks { display: none; }
+
+  .topnav a.normal {
+    color: white;
+    float: none;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+
+  .topnav a.icon {
+    color: white;
+    display: block;
+    padding: 10px 16px;
+    font-size: 17px;
+    position: absolute;
+    float: right;
+    right: 0;
+    top: 0;
+    margin-right: 5%;
+  }
+
+  .topnav a.right {
+    color: white;
+    float: none;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    margin-right: 0;
+  }
+}
+
+@media print, screen and (max-width: 480px) {
+  .topnav #myLinks { display: none; }
+  .image.avatar img { border-radius: 20%; width: 180px; padding: 3px; }
+}
+
+@media print, screen and (max-width: 1200px) and (min-width: 1001px) {
+  .topnav img { margin-left: 6%; }
+  .topnav a.right { margin-right: 6%; }
+}
+
+@media print, screen and (max-width: 1400px) and (min-width: 1201px) {
+  .topnav img { margin-left: 12%; }
+  .topnav a.right { margin-right: 12%; }
+}
+
+@media print, screen and (max-width: 1600px) and (min-width: 1401px) {
+  .topnav img { margin-left: 16%; }
+  .topnav a.right { margin-right: 16%; }
+}
+
+@media print, screen and (max-width: 1800px) and (min-width: 1601px) {
+  .topnav img { margin-left: 19%; }
+  .topnav a.right { margin-right: 19%; }
+}
+
+@media print, screen and (max-width: 2000px) and (min-width: 1801px) {
+  .topnav img { margin-left: 22%; }
+  .topnav a.right { margin-right: 22%; }
+}
