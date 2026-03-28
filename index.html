@@ -46,8 +46,32 @@
       }
     }
   </script>
+  <!--
+    Copyright (c) 2026 Yujing Huang. All rights reserved.
+    Unauthorized copying, reproduction, or redistribution of this website
+    or any of its contents is strictly prohibited.
+  -->
 </head>
-<body>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+
+<script>
+// Block keyboard shortcuts for viewing/copying source
+document.addEventListener('keydown', function(e) {
+  // Ctrl+U (view source), Ctrl+S (save), Ctrl+Shift+I (dev tools), F12
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
+    e.preventDefault();
+    return false;
+  }
+  if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+    e.preventDefault();
+    return false;
+  }
+  if (e.key === 'F12') {
+    e.preventDefault();
+    return false;
+  }
+});
+</script>
 
   <!-- ── Top Navigation ─────────────────────────────────────────────────── -->
   <div class="topnav">
@@ -147,7 +171,7 @@
       <h2 id="whats-new">What's New</h2>
       <ul>
         <li><span class="news-date">[Mar 2026]</span> Awarded EHA Early Stage Dissertation Grant.</li>
-        <li><span class="news-date">[Mar 2026]</span> Awarded CEPR ReCIPE PhD Research Grant (&pound;11,600).</li>
+        <li><span class="news-date">[Mar 2026]</span> Awarded CEPR ReCIPE PhD Research Grant.</li>
         <li><span class="news-date">[Dec 2025]</span> Awarded UCLA Center for Global Management PhD Global Research Award.</li>
         <li><span class="news-date">[Nov 2025]</span> Selected as NBER Fellow of the Innovation Information Initiative (i3).</li>
       </ul>
