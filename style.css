@@ -20,7 +20,6 @@ body {
   color: #595959;
   font-weight: 400;
   margin: 0;
-  overflow-x: hidden;
 }
 
 a { color: #2774AE; text-decoration: none; transition: color 0.2s; }
@@ -319,6 +318,15 @@ footer p { font: 12px/1.2 "Crimson Pro", serif; color: #999; }
 @media print, screen and (max-width: 960px) {
   body { word-wrap: break-word; padding: 0; }
 
+  /* Deterministic bar height so the fixed nav never overlaps the header.
+     Kills the desktop negative-margin logo trick on mobile. */
+  .topnav { min-height: 52px; }
+  .topnav img {
+    height: 30px;
+    width: auto;
+    margin: 11px 0 11px 16px !important;
+  }
+
   .topnav #myLinks { display: none; width: 100%; }
 
   .topnav a.normal,
@@ -340,13 +348,15 @@ footer p { font: 12px/1.2 "Crimson Pro", serif; color: #999; }
 
   .topnav a.icon {
     color: white;
-    display: block;
-    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    padding: 0 16px;
     font-size: 20px;
     position: absolute;
     right: 0;
     top: 0;
-    margin-right: 5%;
+    margin-right: 4%;
   }
 }
 
