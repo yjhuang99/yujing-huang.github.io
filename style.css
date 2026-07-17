@@ -318,16 +318,44 @@ footer p { font: 12px/1.2 "Crimson Pro", serif; color: #999; }
 @media print, screen and (max-width: 960px) {
   body { word-wrap: break-word; padding: 0; }
 
-  /* Deterministic bar height so the fixed nav never overlaps the header.
-     Kills the desktop negative-margin logo trick on mobile. */
-  .topnav { min-height: 52px; }
+  /* Flex-centered bar: logo and hamburger vertically centered and never
+     clipped; menu is an absolute dropdown below the bar. Replaces the
+     desktop negative-margin logo trick, which clipped on mobile. */
+  .topnav {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    overflow: visible;
+    padding: 8px 16px;
+  }
   .topnav img {
     height: 30px;
     width: auto;
-    margin: 11px 0 11px 16px !important;
+    margin: 0 !important;
   }
 
-  .topnav #myLinks { display: none; width: 100%; }
+  .topnav a.icon {
+    color: white;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 16px;
+    top: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 22px;
+  }
+
+  .topnav #myLinks {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #1a3a5c;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  }
 
   .topnav a.normal,
   .topnav a.right {
@@ -344,19 +372,6 @@ footer p { font: 12px/1.2 "Crimson Pro", serif; color: #999; }
   .topnav a.normal:active,
   .topnav a.right:active {
     background-color: rgba(255, 209, 0, 0.15);
-  }
-
-  .topnav a.icon {
-    color: white;
-    display: flex;
-    align-items: center;
-    height: 52px;
-    padding: 0 16px;
-    font-size: 20px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin-right: 4%;
   }
 }
 
