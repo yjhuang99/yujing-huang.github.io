@@ -17,13 +17,16 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      min-height: 100%;
       background: #525659;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     /* Slim top bar with a link back to the homepage */
     .cv-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -34,19 +37,33 @@
       font-size: 0.95rem;
       box-sizing: border-box;
     }
-    .cv-bar a {
-      color: #e8e8e8;
-      text-decoration: none;
-    }
+    .cv-bar a { color: #e8e8e8; text-decoration: none; }
     .cv-bar a:hover { text-decoration: underline; }
     .cv-bar .title { font-weight: 600; }
 
-    /* The viewer fills the rest of the window */
-    .cv-frame {
-      width: 100%;
-      height: calc(100% - 44px);
-      border: none;
-      display: block;
+    /* Rendered pages */
+    #cv-pages {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 12px 48px;
+    }
+    #cv-pages canvas {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      background: #fff;
+    }
+    #cv-status { color: #cfcfcf; padding: 40px; font-size: 0.95rem; }
+
+    /* Discourage image dragging / text selection on rendered pages */
+    #cv-pages, #cv-pages canvas {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
   </style>
 </head>
@@ -57,24 +74,82 @@
     <a href="./index.html">&larr; Back to homepage</a>
   </div>
 
-  <!--
-    The CV is embedded for viewing only. The #toolbar=0 fragment hides the
-    browser PDF viewer's download / print / save controls (Chrome, Edge).
-    Right-click is disabled below. Note: no static web page can fully prevent
-    a determined user from retrieving a file their browser has downloaded to
-    display it — this removes the ordinary download affordances.
-  -->
-  <iframe
-    class="cv-frame"
-    src="./assets/cv.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-    title="Yujing Huang — Curriculum Vitae">
-  </iframe>
+  <div id="cv-pages">
+    <div id="cv-status">Loading CV&hellip;</div>
+  </div>
 
+  <!--
+    View-only CV.
+    The PDF bytes are embedded (base64) in cv-data.js and rendered to <canvas>
+    images with PDF.js. There is no <embed>/<iframe> PDF and no cv.pdf file on
+    the server, so the browser exposes no download / print / save toolbar and
+    no direct PDF URL. Right-click, drag, and Ctrl/Cmd+S/P are disabled below.
+    Honest limit: since the bytes must reach the browser to be displayed, a
+    determined technical user could still reconstruct the file. True prevention
+    would require serving from behind a login, which static hosting can't do.
+  -->
+  <script src="./cv-data.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
-    // Disable right-click (context menu "Save as…") across the page.
-    document.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-    });
+    (function () {
+      var status = document.getElementById('cv-status');
+      var container = document.getElementById('cv-pages');
+
+      if (typeof pdfjsLib === 'undefined' || typeof window.CV_B64 === 'undefined') {
+        status.textContent = 'Sorry — the CV could not be loaded.';
+        return;
+      }
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      // Decode base64 -> Uint8Array
+      var raw = atob(window.CV_B64);
+      var bytes = new Uint8Array(raw.length);
+      for (var i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+
+      // Render crisply on high-DPI screens
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      pdfjsLib.getDocument({ data: bytes }).promise.then(function (pdf) {
+        container.removeChild(status);
+        var chain = Promise.resolve();
+        for (var p = 1; p <= pdf.numPages; p++) {
+          (function (pageNum) {
+            chain = chain.then(function () {
+              return pdf.getPage(pageNum).then(function (page) {
+                var viewport = page.getViewport({ scale: 1.5 * dpr });
+                var canvas = document.createElement('canvas');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                canvas.style.width = (viewport.width / dpr) + 'px';
+                container.appendChild(canvas);
+                return page.render({
+                  canvasContext: canvas.getContext('2d'),
+                  viewport: viewport
+                }).promise;
+              });
+            });
+          })(p);
+        }
+        return chain;
+      }).catch(function () {
+        var msg = document.createElement('div');
+        msg.id = 'cv-status';
+        msg.textContent = 'Sorry — the CV could not be displayed.';
+        container.appendChild(msg);
+      });
+
+      // Remove ordinary save affordances
+      document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+      document.addEventListener('keydown', function (e) {
+        var k = (e.key || '').toLowerCase();
+        if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'p')) {
+          e.preventDefault();
+        }
+      });
+    })();
   </script>
 
 </body>
