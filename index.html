@@ -283,5 +283,50 @@ document.addEventListener('keydown', function(e) {
     })();
   </script>
 
+  <!-- ── Google Analytics: engagement events ─────────────────────────────
+       High-signal job-market actions. Page views + engagement time are
+       already captured by the base gtag config in <head>; this adds:
+         cv_open     — visitor clicked the CV icon
+         email_click — visitor clicked the (JS-injected) mailto link
+         paper_view  — a paper card scrolled into view, tagged with its title
+                       (papers aren't clickable PDFs, so "scrolled into view"
+                        is the available proxy for which paper drew interest) -->
+  <script>
+    (function () {
+      if (typeof gtag !== 'function') return;
+
+      // Clicks — delegation catches the mailto link injected after load.
+      document.addEventListener('click', function (e) {
+        var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('cv.html') !== -1) {
+          gtag('event', 'cv_open', { link_location: 'sidebar' });
+        } else if (href.indexOf('mailto:') === 0 ||
+                   (a.className || '').indexOf('email-link') !== -1) {
+          gtag('event', 'email_click');
+        }
+      });
+
+      // Paper reads — fire once per card, tagged with the paper title.
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !entry.target.dataset.seen) {
+              entry.target.dataset.seen = '1';
+              var t = entry.target.querySelector('.paper-title');
+              gtag('event', 'paper_view', {
+                paper_title: t ? t.textContent.trim().slice(0, 100) : 'unknown'
+              });
+            }
+          });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.paper-card').forEach(function (card) {
+          obs.observe(card);
+        });
+      }
+    })();
+  </script>
+
 </body>
 </html>
