@@ -7,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Yujing Huang — Economics PhD Candidate at UCLA Anderson">
 
+  <!-- Stay indexable by search engines, but opt out of AI training/scraping -->
+  <meta name="robots" content="index, follow, noai, noimageai">
+  <meta name="googlebot" content="index, follow">
+
   <meta property="og:type" content="website">
   <meta property="og:title" content="Yujing Huang's Homepage">
   <meta property="og:description" content="Yujing Huang is a Ph.D. candidate in Economics at UCLA Anderson.">
@@ -148,7 +152,7 @@ document.addEventListener('keydown', function(e) {
       </a>
       <br>
 
-      <email>yujingh (at) g.ucla.edu</email>
+      <email class="js-email">yujingh (at) g.ucla.edu</email>
 
       <br><br>
       <div class="social-icons">
@@ -245,7 +249,7 @@ document.addEventListener('keydown', function(e) {
       <div class="contact-box">
         <strong>Office:</strong> Entrepreneurs Hall C501, UCLA Anderson School of Management
         <br>
-        <strong>Email:</strong> <email>yujingh (at) g.ucla.edu</email>
+        <strong>Email:</strong> <email class="js-email">yujingh (at) g.ucla.edu</email>
       </div>
 
       <br><br>
@@ -258,6 +262,26 @@ document.addEventListener('keydown', function(e) {
       <br><br>
     </footer>
   </div>
+
+  <!-- Email obfuscation: assemble the address in JS so it never appears
+       in the static HTML source. Human visitors get a clickable mailto;
+       plain-text scrapers that don't run JS see only "yujingh (at) ...". -->
+  <script>
+    (function () {
+      var user = 'yujingh';
+      var domain = 'g.ucla' + '.edu';
+      var addr = user + '@' + domain;
+      var nodes = document.querySelectorAll('.js-email');
+      for (var i = 0; i < nodes.length; i++) {
+        var a = document.createElement('a');
+        a.href = 'mailto:' + addr;
+        a.textContent = addr;
+        a.className = 'email-link';
+        nodes[i].textContent = '';
+        nodes[i].appendChild(a);
+      }
+    })();
+  </script>
 
 </body>
 </html>
